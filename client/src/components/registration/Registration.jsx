@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { registration } from "../actions/user";
 import Input from "../UI/Input/Input";
 import RegStyle from "./registration.module.css";
 
@@ -67,7 +68,19 @@ const Registration = () => {
             });
           }}
         />
-        <button className={RegStyle.btn}>Войти</button>
+        <button
+          className={RegStyle.btn}
+          onClick={() => {
+            registration(
+              inputs.email,
+              inputs.password,
+              inputs.firstName,
+              inputs.secondName
+            );
+          }}
+        >
+          Войти
+        </button>
       </div>
     </div>
   );
