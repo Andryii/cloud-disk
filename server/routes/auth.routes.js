@@ -24,7 +24,7 @@ router.post(
         return res.status(400).json({ massage: "Uncorrect requst", errors });
       }
 
-      const { email, password } = req.body;
+      const { email, password, firstName, secondName } = req.body;
 
       const candidate = await User.findOne({ email });
 
@@ -35,7 +35,13 @@ router.post(
       }
 
       const hashPassword = await bcrypt.hash(password, 15);
-      const user = new User({ email, password: hashPassword });
+      const user = new User({
+        email,
+        password: hashPassword,
+        firstName,
+        secondName,
+      });
+
       await user.save();
       return res.json({ massage: "User was created" });
     } catch (error) {

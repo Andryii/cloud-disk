@@ -1,0 +1,53 @@
+.navbar {
+  display: flex;
+  height: 50px;
+  width: 100vw;
+  background-color: #fff;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 3px 4px rgba(92, 92, 92, 0.25);
+  color: #566885;
+}
+
+.logocase {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  margin-left: 50px;
+}
+
+.header {
+  margin-left: 16px;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.usercase {
+  display: flex;
+  align-items: center;
+}
+
+.login {
+  margin-right: 16px;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.registration {
+  margin-right: 50px;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: left;
+}

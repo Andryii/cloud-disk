@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+a.text:active, /* активная/посещенная ссылка */
+a.text:hover,  /* при наведении */
+a.text {
+  color: #566885;
+  text-decoration: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background-color: #e9e6e6;
+  justify-content: center;
+  align-items: center;
+}
