@@ -7,11 +7,13 @@ module.exports = (req, res, next) => {
   }
 
   try {
-    const token = req.headers.authtorization.split(" ")[1];
+    const token = req.headers.authorization.split(" ")[1];
 
     if (!token) {
       return res.status(401).json({ massage: "Auth token error" });
     }
+
+    
 
     const decoded = jwt.verify(token, config.get("secretKey"));
     req.user = decoded;

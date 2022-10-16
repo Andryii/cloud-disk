@@ -6,6 +6,8 @@ const config = require("config");
 const router = new Router();
 const { check, validationResult } = require("express-validator");
 const authMiddleware = require("../middleware/auth.middleware");
+const fileService = require("../services/fileService");
+const File = require("../models/File");
 
 router.post(
   "/registration",
@@ -44,6 +46,8 @@ router.post(
       });
 
       await user.save();
+      await fileService.createDir(new File({ user: user.id, name: "" }));
+
       return res.json({ massage: "User was created" });
     } catch (error) {
       console.log(error);
