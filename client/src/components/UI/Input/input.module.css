@@ -5,29 +5,22 @@
   outline-offset: 0;
 }
 
-input {
+.input {
   font-family: "Roboto";
   font-style: normal;
-  font-weight: 700;
   font-size: 18px;
-
+  width: 100%;
   background: transparent;
   border: none;
   padding-bottom: 5px;
   border-bottom: solid #566885 3px;
-  margin: 0 33px 0 33px;
   color: #566885;
 }
 
-input::placeholder {
+.input::placeholder {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
   line-height: 21px;
-
   color: #5668855e;
-}
-input:focus
-{
-    transform: scale(1.05);
 }

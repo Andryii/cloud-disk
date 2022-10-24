@@ -24,8 +24,8 @@ class FileController {
 
       return res.json(file);
     } catch (error) {
-      console.log(e);
-      return res.status(400).json(e);
+      console.log(error);
+      return res.status(400).json(error);
     }
   }
 
@@ -35,7 +35,7 @@ class FileController {
         user: req.user.id,
         parent: req.query.parent,
       });
-      return res.json({ files });
+      return res.json( files );
     } catch (e) {
       console.log(e);
       return res.status(500).json({ message: "Can not get files" });

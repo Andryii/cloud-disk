@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setUser } from "../../reducers/userReducer";
+import { setUser } from "../reducers/userReducer";
 
 export const registration = async (email, password, firstName, secondName) => {
   try {
@@ -45,7 +45,8 @@ export const auth = () => {
       dispatch(setUser(response.data.user));
       localStorage.setItem("token", response.data.token);
     } catch (error) {
-      alert(error.response.data.massage);
+      console.log(error.response.data.massage);
+      //alert(error.response.data.massage);
       localStorage.removeItem("token");
     }
   };

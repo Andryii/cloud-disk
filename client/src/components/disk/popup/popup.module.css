@@ -1,0 +1,40 @@
+.popup {
+  height: 100vh;
+  background: rgb(0, 0, 0, 0.5);
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.create {
+  border-radius: 12px;
+  border: 2px solid;
+  padding: 2px;
+  align-self: flex-end;
+}
+.create:active {
+  background-color: #566885d7;
+  color: white;
+  border-color: #566885;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+input {
+  margin: 20px 0;
+}

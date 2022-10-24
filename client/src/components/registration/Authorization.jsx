@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Input from "../UI/Input/Input";
 import RegStyle from "../registration/registration.module.css";
-import { login } from "../actions/user";
+import { login } from "../../actions/user";
 import { useDispatch } from "react-redux";
 
 const Authorization = () => {
@@ -43,7 +43,7 @@ const Authorization = () => {
           }}
         />
         <button
-          className={RegStyle.btn}
+          className={RegStyle.button}
           onClick={() => dispatch(login(inputs.email, inputs.password))}
         >
           Войти

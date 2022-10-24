@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { registration } from "../actions/user";
+import { registration } from "../../actions/user";
 import Input from "../UI/Input/Input";
 import RegStyle from "./registration.module.css";
 
@@ -69,7 +69,7 @@ const Registration = () => {
           }}
         />
         <button
-          className={RegStyle.btn}
+          className={RegStyle.button}
           onClick={() => {
             registration(
               inputs.email,
@@ -79,7 +79,7 @@ const Registration = () => {
             );
           }}
         >
-          Войти
+          Зарегистрироватся
         </button>
       </div>
     </div>

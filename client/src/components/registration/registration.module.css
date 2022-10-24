@@ -3,13 +3,14 @@
   display: flex;
   flex-direction: column;
   height: 345px;
-  width: 537px;
+  width: 507px;
   left: 451px;
   top: 286px;
   border-radius: 27px;
   filter: drop-shadow(4px 4px 4px rgba(92, 92, 92, 0.25));
   justify-content: space-between;
   color: #566885;
+  padding: 0 40px;
 }
 
 .header {
@@ -22,7 +23,7 @@
   line-height: 33px;
 }
 
-button {
+.button {
   padding: 0;
   border: none;
   font: inherit;
