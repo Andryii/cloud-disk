@@ -6,13 +6,12 @@
   align-items: center;
 }
 
-.file:hover
-{
-    transform: scale(1.02);
+.file:hover {
+  transform: scale(1.02);
 }
 
 .img {
-    justify-self: center;
+  justify-self: center;
 }
 .name {
   grid-column-start: 2;
@@ -27,3 +26,29 @@
   grid-column-start: 6;
   justify-self: center;
 }
+.download {
+}
+
+.delete {
+}
+
+.btn {
+  display: none;
+}
+
+.file:hover .date {
+  grid-column-start: 3;
+}
+.file:hover .size {
+  grid-column-start: 4;
+}
+.file:hover .download{
+  grid-column-start: 5;
+  display: block;
+}
+
+.file:hover .delete  {
+  grid-column-start: 6;
+  display: block;
+}
+

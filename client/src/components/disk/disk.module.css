@@ -1,6 +1,7 @@
 .disk {
   margin-top: 20px;
   margin-left: 20px;
+  height: calc(100vh - 100px);
 }
 
 .back {
@@ -9,5 +10,30 @@
   margin-left: 10px;
 }
 
-.btn {
+.btns {
+  display: flex;
+}
+
+.upload {
+}
+
+.input {
+  display: none;
+}
+
+.label {
+  border: 2px dashed #566885;
+  margin-left: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.dropArea {
+  height: calc(100vh - 50px - 40px);
+  margin: 20px;
+  border: dashed #566885 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
 }

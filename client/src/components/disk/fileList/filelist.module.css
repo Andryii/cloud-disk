@@ -11,14 +11,12 @@
   grid-column-start: 2;
 }
 
-.date
-{
-    grid-column-start: 5;
-    justify-self: center;
+.date {
+  grid-column-start: 5;
+  justify-self: center;
 }
 
-.size
-{
-    grid-column-start: 6;
-    justify-self: center;
+.size {
+  grid-column-start: 6;
+  justify-self: center;
 }

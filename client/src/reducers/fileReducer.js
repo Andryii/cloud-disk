@@ -24,6 +24,11 @@ export default function fileReducer(state = defaultState, action) {
       return { ...state, popupDisplay: action.payload };
     case PUSH_TO_STACK:
       return { ...state, dirStack: [...state.dirStack, action.payload] };
+    case POP_FROM_STACK:
+      return {
+        ...state,
+        files: [...state.files.filter((file) => file._id !== action.payload)],
+      };
     default:
       return state;
   }
@@ -40,3 +45,7 @@ export const setPopupDisplay = (display) => ({
   payload: display,
 });
 export const pushToStack = (dir) => ({ type: PUSH_TO_STACK, payload: dir });
+export const popFromStack = (dirId) => ({
+  type: POP_FROM_STACK,
+  payload: dirId,
+});
