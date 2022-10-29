@@ -14,6 +14,7 @@ const Disk = () => {
   const currentDir = useSelector((state) => state.files.currentDir);
   const dirStack = useSelector((state) => state.files.dirStack);
   const [dragEnter, setDragEnter] = useState(false);
+  const [sort, setSort] = useState("type");
 
   function showPopupHandler() {
     // dispatch(createDir(currentDir, "asdfasdf"));
@@ -53,8 +54,8 @@ const Disk = () => {
   }
 
   useEffect(() => {
-    dispatch(getFiles(currentDir));
-  }, [currentDir]);
+    dispatch(getFiles(currentDir, sort));
+  }, [currentDir, sort]);
 
   return !dragEnter ? (
     <div
@@ -88,6 +89,17 @@ const Disk = () => {
             className={DiskStyle.input}
           />
         </div>
+        <select
+          onChange={(e) => {
+            setSort(e.target.value);
+          }}
+          value={sort}
+          className={DiskStyle.select}
+        >
+          <option value="name">По имени</option>
+          <option value="type">По типу</option>
+          <option value="date">По дате</option>
+        </select>
       </div>
       <FileList />
       <Popup />

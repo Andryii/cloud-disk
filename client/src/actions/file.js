@@ -6,15 +6,20 @@ import {
   showUploader,
 } from "../reducers/uploadReducer";
 
-export function getFiles(dirId) {
+export function getFiles(dirId, sort) {
   return async (dispatch) => {
     try {
-      const response = await axios.get(
-        `http://localhost:5000/api/files${dirId ? `?parent=` + dirId : ""}`,
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
-      );
+      let url = `http://localhost:5000/api/files`;
+
+      if ((dirId, sort)) {
+        url = `http://localhost:5000/api/files?${
+          dirId ? `&parent=` + dirId : ""
+        }${sort ? `&sort=` + sort : ""}`;
+      }
+    
+      const response = await axios.get(url, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
       dispatch(setFiles(response.data));
       //   console.log(response.data);
     } catch (error) {
