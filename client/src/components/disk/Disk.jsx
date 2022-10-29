@@ -2,11 +2,12 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createDir, getFiles, uploadFile } from "../../actions/file";
+import { getFiles, uploadFile } from "../../actions/file";
 import { setCurrentDir, setPopupDisplay } from "../../reducers/fileReducer";
 import DiskStyle from "./disk.module.css";
 import FileList from "./fileList/FileList";
 import Popup from "./popup/Popup";
+import Uploader from "./uploader/Uploader";
 
 const Disk = () => {
   const dispatch = useDispatch();
@@ -90,6 +91,7 @@ const Disk = () => {
       </div>
       <FileList />
       <Popup />
+      <Uploader />
     </div>
   ) : (
     <div

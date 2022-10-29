@@ -44,7 +44,7 @@
 }
 
 .body {
-  margin: 236px;
+  margin: 236px 0;
   display: flex;
   justify-content: center;
   align-items: center;

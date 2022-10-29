@@ -1,5 +1,6 @@
 .filelist {
   margin: 20px 0;
+  margin-right: 20px;
 }
 
 .header {
@@ -20,3 +21,4 @@
   grid-column-start: 6;
   justify-self: center;
 }
+

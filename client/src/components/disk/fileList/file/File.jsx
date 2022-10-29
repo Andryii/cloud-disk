@@ -3,11 +3,10 @@ import FStyle from "./file.module.css";
 import dirlogo from "../../../../assets/img/dir-logo.svg";
 import filelogo from "../../../../assets/img/file-logo.svg";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  pushToStack,
-  setCurrentDir,
-} from "../../../../reducers/fileReducer";
-import { downloadFile,deleteFile } from "../../../../actions/file";
+import { pushToStack, setCurrentDir } from "../../../../reducers/fileReducer";
+import { downloadFile, deleteFile } from "../../../../actions/file";
+import sizeFormat from "../../../../utils/sizeFormat";
+
 const File = ({ file }) => {
   const dispatch = useDispatch();
   const currentDir = useSelector((state) => state.files.currentDir);
@@ -38,7 +37,7 @@ const File = ({ file }) => {
       ></img>
       <div className={FStyle.name}>{file.name}</div>
       <div className={FStyle.date}>{file.date.slice(0, 10)}</div>
-      <div className={FStyle.size}>{file.size}</div>
+      <div className={FStyle.size}>{sizeFormat(file.size)}</div>
       {file.type === "dir" ? (
         ""
       ) : (
