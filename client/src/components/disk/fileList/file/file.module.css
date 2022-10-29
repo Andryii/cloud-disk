@@ -4,6 +4,18 @@
   display: grid;
   grid-template-columns: 1fr 4fr repeat(4, 1fr);
   align-items: center;
+  animation: file-enter 500ms forwards;
+}
+
+@keyframes file-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .file:hover {
@@ -42,13 +54,12 @@
 .file:hover .size {
   grid-column-start: 4;
 }
-.file:hover .download{
+.file:hover .download {
   grid-column-start: 5;
   display: block;
 }
 
-.file:hover .delete  {
+.file:hover .delete {
   grid-column-start: 6;
   display: block;
 }
-

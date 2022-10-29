@@ -1,4 +1,5 @@
 import axios from "axios";
+import { hideLoader, showLoader } from "../reducers/appReducer";
 import { setFiles, addFile, popFromStack } from "../reducers/fileReducer";
 import {
   addUploadFile,
@@ -9,6 +10,7 @@ import {
 export function getFiles(dirId, sort) {
   return async (dispatch) => {
     try {
+      dispatch(showLoader());
       let url = `http://localhost:5000/api/files`;
 
       if ((dirId, sort)) {
@@ -16,14 +18,17 @@ export function getFiles(dirId, sort) {
           dirId ? `&parent=` + dirId : ""
         }${sort ? `&sort=` + sort : ""}`;
       }
-    
+
       const response = await axios.get(url, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       dispatch(setFiles(response.data));
+
       //   console.log(response.data);
     } catch (error) {
       alert(error.response.data.message);
+    } finally {
+      dispatch(hideLoader());
     }
   };
 }
@@ -135,6 +140,24 @@ export function deleteFile(file) {
       console.log(response.data.message);
     } catch (error) {
       console.log(error?.response?.data?.message);
+    }
+  };
+}
+
+export function searchFiles(search) {
+  return async (dispatch) => {
+    try {
+      dispatch(showLoader());
+      let url = `http://localhost:5000/api/files/search?search=${search}`;
+
+      const response = await axios.get(url, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+      dispatch(setFiles(response.data));
+    } catch (error) {
+      console.log(error.response.data.message);
+    } finally {
+      dispatch(hideLoader());
     }
   };
 }

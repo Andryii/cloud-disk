@@ -4,7 +4,6 @@
   width: 100vw;
   background-color: #fff;
   align-items: center;
-  justify-content: space-between;
   box-shadow: 0px 3px 4px rgba(92, 92, 92, 0.25);
   color: #566885;
 }
@@ -31,6 +30,7 @@
 .usercase {
   display: flex;
   align-items: center;
+  margin-left: auto;
 }
 
 .login {
@@ -57,4 +57,10 @@ a:hover,  /* при наведении */
 a {
   text-decoration: none;
   color: #566885;
+}
+
+.search {
+  
+  margin: 20px;
+  max-width: 400px;
 }

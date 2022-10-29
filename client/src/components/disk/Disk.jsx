@@ -3,7 +3,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFiles, uploadFile } from "../../actions/file";
-import { setCurrentDir, setPopupDisplay } from "../../reducers/fileReducer";
+import {
+  setCurrentDir,
+  setPopupDisplay,
+  setView,
+} from "../../reducers/fileReducer";
 import DiskStyle from "./disk.module.css";
 import FileList from "./fileList/FileList";
 import Popup from "./popup/Popup";
@@ -13,6 +17,7 @@ const Disk = () => {
   const dispatch = useDispatch();
   const currentDir = useSelector((state) => state.files.currentDir);
   const dirStack = useSelector((state) => state.files.dirStack);
+  const loader = useSelector((state) => state.app.loader);
   const [dragEnter, setDragEnter] = useState(false);
   const [sort, setSort] = useState("type");
 
@@ -57,6 +62,19 @@ const Disk = () => {
     dispatch(getFiles(currentDir, sort));
   }, [currentDir, sort]);
 
+  if (loader) {
+    return (
+      <div className={DiskStyle.loader}>
+        <div className={DiskStyle.ldsRing}>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    );
+  }
+
   return !dragEnter ? (
     <div
       className={DiskStyle.disk}
@@ -100,6 +118,18 @@ const Disk = () => {
           <option value="type">По типу</option>
           <option value="date">По дате</option>
         </select>
+        <button
+          className={DiskStyle.plate}
+          onClick={() => {
+            dispatch(setView("plate"));
+          }}
+        ></button>
+        <button
+          className={DiskStyle.list}
+          onClick={() => {
+            dispatch(setView("list"));
+          }}
+        ></button>
       </div>
       <FileList />
       <Popup />

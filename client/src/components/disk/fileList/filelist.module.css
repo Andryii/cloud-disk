@@ -22,3 +22,17 @@
   justify-self: center;
 }
 
+.emtydir {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 50px);
+}
+
+.filePlate
+{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 0 ;
+}
+

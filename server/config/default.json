@@ -2,5 +2,6 @@
   "serverPort": 5000,
   "dbUrl": "mongodb://127.0.0.1:27017/cloud",
   "secretKey": "mern-secret-key",
-  "filePath": "D:\\coding\\onlinedisk\\server\\files"
+  "filePath": "D:\\coding\\onlinedisk\\server\\files",
+  "staticPath": "D:\\coding\\onlinedisk\\server\\static"
 }

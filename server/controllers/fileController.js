@@ -4,6 +4,7 @@ const fs = require("fs");
 const User = require("../models/User");
 const File = require("../models/File");
 const fileService = require("../services/fileService");
+const uuid = require("uuid");
 
 class FileController {
   async createDir(req, res) {
@@ -42,7 +43,7 @@ class FileController {
             user: req.user.id,
             parent: req.query.parent,
           }).sort({ name: 1 });
-          
+
           break;
         case "type":
           files = await File.find({
@@ -164,6 +165,48 @@ class FileController {
     } catch (error) {
       console.log(error);
       return res.status(400).json({ message: "Dir is not empty" });
+    }
+  }
+
+  async searchFile(req, res) {
+    try {
+      const searchName = req.query.search;
+      let files = await File.find({ user: req.user.id });
+      files = files.filter((file) => file.name.includes(searchName));
+
+      return res.json(files);
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({ message: "Search error" });
+    }
+  }
+
+  async uploadAvatar(req, res) {
+    try {
+      const file = req.files.file;
+      // if (file.split(".")[1] != "jpg") {
+      //   throw "Wrong type"
+      // }
+      const user = await User.findById(req.user.id);
+      const avatarName = uuid.v4() + ".jpg";
+      file.mv(config.get("staticPath") + "\\" + avatarName);
+      user.avatar = avatarName;
+      await user.save();
+      return res.json(user);
+    } catch (error) {
+      return res.status(500).json({ message: "Upload avatar error" });
+    }
+  }
+
+  async deleteAvatar(req, res) {
+    try {
+      const user = await User.findById(req.user.id);
+      fs.unlinkSync(config.get("staticPath") + "\\" + user.avatar);
+      user.avatar = null;
+      await user.save();
+      return res.json(user);
+    } catch (error) {
+      return res.status(500).json({ message: "Delete avatar error" });
     }
   }
 }

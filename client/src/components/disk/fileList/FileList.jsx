@@ -2,8 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import FLStyle from "./filelist.module.css";
 import File from "./file/File";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import "./fileAnimation.css";
 
 const FileList = () => {
   /*const files = [
@@ -31,27 +29,35 @@ const FileList = () => {
     ].map((file) => <File file={file} key={file._id} />);*/
 
   const files = useSelector((state) => state.files.files);
-  return (
-    <div className={FLStyle.filelist}>
-      <div className={FLStyle.header}>
-        <div className={FLStyle.name}>Название</div>
-        <div className={FLStyle.date}>Дата</div>
-        <div className={FLStyle.size}>Размер</div>
-      </div>
-      <TransitionGroup>
+  const filesView = useSelector((state) => state.files.view);
+  if (files.length === 0) {
+    return <div className={FLStyle.emtydir}>Файлы не найдены</div>;
+  }
+
+  if (filesView == "list") {
+    return (
+      <div className={FLStyle.filelist}>
+        <div className={FLStyle.header}>
+          <div className={FLStyle.name}>Название</div>
+          <div className={FLStyle.date}>Дата</div>
+          <div className={FLStyle.size}>Размер</div>
+        </div>
+
         {files.map((file) => (
-          <CSSTransition
-            key={file._id}
-            timeout={500}
-            classNames={"file"}
-            exit={false}
-          >
-            <File file={file} />
-          </CSSTransition>
+          <File key={file._id} file={file} />
         ))}
-      </TransitionGroup>
-    </div>
-  );
+      </div>
+    );
+  }
+  if (filesView == "plate") {
+    return (
+      <div className={FLStyle.filePlate}>
+        {files.map((file) => (
+          <File key={file._id} file={file} />
+        ))}
+      </div>
+    );
+  }
 };
 
 export default FileList;
