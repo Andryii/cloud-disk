@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_URL } from "../config";
 import { hideLoader, showLoader } from "../reducers/appReducer";
 import { setFiles, addFile, popFromStack } from "../reducers/fileReducer";
 import {
@@ -11,12 +12,12 @@ export function getFiles(dirId, sort) {
   return async (dispatch) => {
     try {
       dispatch(showLoader());
-      let url = `http://localhost:5000/api/files`;
+      let url = `${API_URL}api/files`;
 
       if ((dirId, sort)) {
-        url = `http://localhost:5000/api/files?${
-          dirId ? `&parent=` + dirId : ""
-        }${sort ? `&sort=` + sort : ""}`;
+        url = `${API_URL}api/files?${dirId ? `&parent=` + dirId : ""}${
+          sort ? `&sort=` + sort : ""
+        }`;
       }
 
       const response = await axios.get(url, {
@@ -37,7 +38,7 @@ export function createDir(dirId, name) {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/files`,
+        `${API_URL}api/files`,
         {
           name,
           parent: dirId,
@@ -74,7 +75,7 @@ export function uploadFile(file, dirId) {
       dispatch(showUploader());
       dispatch(addUploadFile(uploadFile));
       const response = await axios.post(
-        `http://localhost:5000/api/files/upload`,
+        `${API_URL}api/files/upload`,
         formData,
         {
           headers: {
@@ -105,14 +106,11 @@ export function uploadFile(file, dirId) {
 }
 
 export async function downloadFile(file) {
-  const response = await fetch(
-    `http://localhost:5000/api/files/download?id=${file._id}`,
-    {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    }
-  );
+  const response = await fetch(`${API_URL}api/files/download?id=${file._id}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
   if (response.status === 200) {
     const blob = await response.blob();
     const downloadUrl = window.URL.createObjectURL(blob);
@@ -129,7 +127,7 @@ export function deleteFile(file) {
   return async (dispatch) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/files?id=${file._id}`,
+        `${API_URL}api/files?id=${file._id}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -148,7 +146,7 @@ export function searchFiles(search) {
   return async (dispatch) => {
     try {
       dispatch(showLoader());
-      let url = `http://localhost:5000/api/files/search?search=${search}`;
+      let url = `${API_URL}api/files/search?search=${search}`;
 
       const response = await axios.get(url, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },

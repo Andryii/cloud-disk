@@ -28,4 +28,5 @@ button {
   border: none;
   font: inherit;
   background: inherit;
+  cursor: pointer;
 }

@@ -41,6 +41,7 @@
   line-height: 23px;
   letter-spacing: 0em;
   text-align: left;
+  cursor: pointer;
 }
 .registration {
   margin-right: 50px;
@@ -50,6 +51,7 @@
   line-height: 23px;
   letter-spacing: 0em;
   text-align: left;
+  cursor: pointer;
 }
 
 a:active, /* активная/посещенная ссылка */
@@ -60,7 +62,11 @@ a {
 }
 
 .search {
-  
   margin: 20px;
   max-width: 400px;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }

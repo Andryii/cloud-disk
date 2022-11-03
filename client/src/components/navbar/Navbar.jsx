@@ -7,12 +7,22 @@ import { logOut } from "../../reducers/userReducer";
 import Input from "../UI/Input/Input";
 import { getFiles, searchFiles } from "../../actions/file";
 import { showLoader } from "../../reducers/appReducer";
+import avatarLogo from "../../assets/img/avatar.svg";
+import { API_URL } from "../../config";
 
 const Navbar = () => {
   const isAuth = useSelector((state) => state.user.isAuth);
   const currentDir = useSelector((state) => state.files.currentDir);
+  const currentUser = useSelector((state) => state.user.currentUser);
   const [searchName, setSearchName] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(false);
+  console.log(!!currentUser.avatar, currentUser.avatar);
+  console.log();
+  const avatar = !!currentUser.avatar
+    ? `${API_URL + currentUser.avatar}`
+    : avatarLogo;
+
+  // const avatar = avatarLogo;
   const dispatch = useDispatch();
   return (
     <div className={NavbarStyle.navbar}>
@@ -50,8 +60,13 @@ const Navbar = () => {
           placeholder="Поиск..."
         />
       )}
+
       {isAuth && (
         <div className={NavbarStyle.usercase}>
+          <NavLink to={"/profile"}>
+            <img className={NavbarStyle.avatar} src={avatar} alt="" />
+          </NavLink>
+
           <div
             className={NavbarStyle.login}
             onClick={() => {
